@@ -1,15 +1,8 @@
 if(NOT MCU)
-  set(MCU cube)
+  set(MCU ${CMAKE_SOURCE_DIR}/cube)
 endif()
 
-#Uncomment for hardware floating point
-add_compile_definitions(ARM_MATH_CM4;ARM_MATH_MATRIX_CHECK;ARM_MATH_ROUNDING)
-add_compile_options(-mfloat-abi=hard -mfpu=fpv4-sp-d16)
-add_link_options(-mfloat-abi=hard -mfpu=fpv4-sp-d16)
-#Uncomment for software floating point
-#add_compile_options(-mfloat-abi=soft)
-add_compile_options(-mcpu=cortex-m4 -mthumb -mthumb-interwork)
-add_link_options(-mcpu=cortex-m4 -mthumb -mthumb-interwork)
+message(STATUS "STM32CubeMX files root: ${MCU}")
 
 add_definitions(-DUSE_HAL_DRIVER)
 
