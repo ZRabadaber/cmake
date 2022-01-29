@@ -1,6 +1,6 @@
 # Name of the target
 set(CMAKE_SYSTEM_NAME Generic)
-set(CMAKE_SYSTEM_PROCESSOR cortex-m0)
+set(CMAKE_SYSTEM_PROCESSOR ARM)
 
 set(MCPU_FLAGS "-mthumb -mcpu=cortex-m0")
 set(VFP_FLAGS "-mfloat-abi=hard -mfpu=fpv4-sp-d16")
