@@ -4,11 +4,18 @@ endif()
 
 message(STATUS "STM32CubeMX files root: ${MCU}")
 
-add_definitions(-DUSE_HAL_DRIVER)
+if ("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
+  add_definitions(-DUSE_FULL_ASSERT)
+endif()
+
+add_definitions(-DUSE_HAL_DRIVER -DUSE_FULL_LL_DRIVER)
 
 #LD script
-file(GLOB LD_SCRIPT ${MCU}/*.ld)
-set(LINKER_SCRIPT ${LD_SCRIPT})
+if(NOT LINKER_SCRIPT)
+  file(GLOB LD_SCRIPT ${MCU}/*.ld)
+  set(LINKER_SCRIPT ${LD_SCRIPT})
+endif()
+add_link_options(-T ${LINKER_SCRIPT})
 
 #INCLUDE dirs
 file(GLOB_RECURSE MCU_INLUDE_DIRS LIST_DIRECTORIES true ${MCU}/___fake___file___)
@@ -17,6 +24,7 @@ list(FILTER MCU_INLUDE_DIRS INCLUDE REGEX "^.*[Ii]nc(lude)?$")
 #C sources
 file(GLOB_RECURSE MCU_SOURCES LIST_DIRECTORIES false ${MCU}/*.c)
 list(FILTER MCU_SOURCES EXCLUDE REGEX "^.*template.c$")
+list(FILTER MCU_SOURCES EXCLUDE REGEX "^.*/main.c$")
 
 #ASM sources
 file(GLOB_RECURSE MSU_ASM LIST_DIRECTORIES false ${MCU}/*.s)
