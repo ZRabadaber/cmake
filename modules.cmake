@@ -22,6 +22,12 @@ function(module MODULE)
         #INCLUDE_DIRECTORIES
         get_property(__INC DIRECTORY ${${lcName}_SOURCE_DIR} PROPERTY INCLUDE_DIRECTORIES)
         set_property(DIRECTORY ${CMAKE_SOURCE_DIR} PROPERTY INCLUDE_DIRECTORIES ${__INC})
+        #INCLUDES
+        get_property(__INCS TARGET ${lcName} PROPERTY INTERFACE_SOURCES)
+        set(${lcName}_INTERFACES ${__INCS} PARENT_SCOPE)
+        #SOURCES
+        get_property(__SRC TARGET ${lcName} PROPERTY SOURCES)
+        set(${lcName}_SOURCES ${__SRC} PARENT_SCOPE)
         #COMPILE_DEFINITIONS
         get_property(__DEF DIRECTORY ${${lcName}_SOURCE_DIR} PROPERTY COMPILE_DEFINITIONS)
         set_property(DIRECTORY ${CMAKE_SOURCE_DIR} PROPERTY COMPILE_DEFINITIONS ${__DEF})
@@ -48,9 +54,15 @@ function(module MODULE)
     endif ()
 endfunction()
 
+function(module_no_build MODULE)
+    list(FILTER MODULES EXCLUDE REGEX "^${MODULE}$")
+    set(MODULES ${MODULES} PARENT_SCOPE)
+endfunction()
+
 function(modules_ready)
     message(STATUS "Make available modules")
     FetchContent_MakeAvailable(${MODULES})
+    message(STATUS "Modules for build: ${MODULES}")
 
     #define components
     if (CORE_COMPONENTS)

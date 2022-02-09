@@ -24,7 +24,7 @@ list(FILTER MCU_INLUDE_DIRS INCLUDE REGEX "^.*[Ii]nc(lude)?$")
 #C sources
 file(GLOB_RECURSE MCU_SOURCES LIST_DIRECTORIES false ${MCU}/*.c)
 list(FILTER MCU_SOURCES EXCLUDE REGEX "^.*template.c$")
-list(FILTER MCU_SOURCES EXCLUDE REGEX "^.*/main.c$")
+# list(FILTER MCU_SOURCES EXCLUDE REGEX "^.*/main.c$")
 
 #ASM sources
 file(GLOB_RECURSE MSU_ASM LIST_DIRECTORIES false ${MCU}/*.s)
