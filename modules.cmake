@@ -23,10 +23,10 @@ function(module MODULE)
         get_property(__INC DIRECTORY ${${lcName}_SOURCE_DIR} PROPERTY INCLUDE_DIRECTORIES)
         set_property(DIRECTORY ${CMAKE_SOURCE_DIR} PROPERTY INCLUDE_DIRECTORIES ${__INC})
         #INCLUDES
-        get_property(__INCS TARGET ${lcName} PROPERTY INTERFACE_SOURCES)
+        get_property(__INCS TARGET ${MODULE} PROPERTY INTERFACE_SOURCES)
         set(${lcName}_INTERFACES ${__INCS} PARENT_SCOPE)
         #SOURCES
-        get_property(__SRC TARGET ${lcName} PROPERTY SOURCES)
+        get_property(__SRC TARGET ${MODULE} PROPERTY SOURCES)
         set(${lcName}_SOURCES ${__SRC} PARENT_SCOPE)
         #COMPILE_DEFINITIONS
         get_property(__DEF DIRECTORY ${${lcName}_SOURCE_DIR} PROPERTY COMPILE_DEFINITIONS)
