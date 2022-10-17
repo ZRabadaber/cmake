@@ -1,6 +1,6 @@
 include(FetchContent)
 
-set(COMPONENT_INCLUDE_DIRECTORIES ${CMAKE_CURRENT_BINARY_DIR}/compinents_includes)
+set(COMPONENT_INCLUDE_DIRECTORIES ${CMAKE_CURRENT_BINARY_DIR}/components_includes)
 include_directories(${COMPONENT_INCLUDE_DIRECTORIES})
 file(WRITE ${COMPONENT_INCLUDE_DIRECTORIES}/core_components.h "")
 
