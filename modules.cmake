@@ -66,7 +66,7 @@ function(modules_ready)
 
     #define components
     if (CORE_COMPONENTS)
-        add_definitions(-DCORE_COMPONENTS=${CORE_COMPONENTS})
+        add_definitions(-DCORE_COMPONENTS='${CORE_COMPONENTS}')
     endif()
     message(STATUS "Components: ${CORE_COMPONENTS}")
 endfunction()
