@@ -31,4 +31,5 @@ file(GLOB_RECURSE MSU_ASM LIST_DIRECTORIES false ${MCU}/*.s)
 list(FILTER MSU_ASM EXCLUDE REGEX "^.*template.s$")
 
 include_directories(${MCU_INLUDE_DIRS})
-set(${MCU}_SOURCES ${MCU_SOURCES} ${MSU_ASM})
+cmake_path(GET MCU STEM MCU_DST_NAME)
+set(${MCU_DST_NAME}_SOURCES ${MCU_SOURCES} ${MSU_ASM})
