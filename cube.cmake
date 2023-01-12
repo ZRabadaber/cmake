@@ -31,4 +31,4 @@ file(GLOB_RECURSE MSU_ASM LIST_DIRECTORIES false ${MCU}/*.s)
 list(FILTER MSU_ASM EXCLUDE REGEX "^.*template.s$")
 
 include_directories(${MCU_INLUDE_DIRS})
-set(SOURCES ${SOURCES} ${MCU_SOURCES} ${MSU_ASM})
+set(${MCU}_SOURCES ${MCU_SOURCES} ${MSU_ASM})
